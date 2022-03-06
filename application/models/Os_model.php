@@ -243,7 +243,14 @@ class Os_model extends CI_Model
         $query = $this->db->get('usuarios');
         if ($query->num_rows() > 0) {
             foreach ($query->result_array() as $row) {
-                $row_set[] = ['label' => $row['nome'] . ' | Telefone: ' . $row['telefone'], 'id' => $row['idUsuarios']];
+                //$row_set[] = ['label' => $row['nome'] . ' | Telefone: ' . $row['telefone'], 'id' => $row['idUsuarios']];
+
+                $temp_array = array();
+                $temp_array['id'] = $row['idUsuarios'];
+                $temp_array['img'] = $row['url_image_user'];
+                $temp_array['value'] = $row['nome'] . ' | CPF: ' . $row['cpf'];
+                $temp_array['label'] = '<img src="data:image/png;base64,' . $row['url_image_user'] . '" width="50" />&nbsp;&nbsp;&nbsp;' . $row['nome'] . ' | CPF: ' . $row['documento'] . '';
+                $row_set[] = $temp_array;
             }
             echo json_encode($row_set);
         }
