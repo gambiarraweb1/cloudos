@@ -52,7 +52,7 @@
                                         <div class="span6">
                                             <div class="col-md-4" style="padding-left: 0px;  padding-right: 0px;">
                                                 <!-- <img src="images/food1.jpg" class="img-responsive"> -->
-                                                <img src="data:image/png;base64, img_base64" width="50" class="img-responsive" />
+                                                <img src="img_base64" width="50" class="img-responsive" />
                                             </div>
                                             <label for="cliente">Cliente<span class="required">*</span></label>
                                             <input id="cliente" class="span12" type="text" name="cliente" value="" />
@@ -143,7 +143,7 @@
             minLength: 1,
             select: function(event, ui) {
                 $("#clientes_id").val(ui.item.id);
-                var img = ui.item.img;
+                var img = ui.item.label;
                 $("#img_base64").attr("src", img);
             }
         }).data('ui-autocomplete')._renderItem = function(ul, item) {
