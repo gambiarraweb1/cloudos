@@ -50,6 +50,10 @@
                                 <form action="<?php echo current_url(); ?>" method="post" id="formOs">
                                     <div class="span12" style="padding: 1%">
                                         <div class="span6">
+                                            <div class="col-md-4" style="padding-left: 0px;  padding-right: 0px;">
+                                                <!-- <img src="images/food1.jpg" class="img-responsive"> -->
+                                                <img src="img_base64" width="50" class="img-responsive" />
+                                            </div>
                                             <label for="cliente">Cliente<span class="required">*</span></label>
                                             <input id="cliente" class="span12" type="text" name="cliente" value="" />
                                             <input id="clientes_id" class="span12" type="hidden" name="clientes_id" value="" />
@@ -139,6 +143,7 @@
             minLength: 1,
             select: function(event, ui) {
                 $("#clientes_id").val(ui.item.id);
+                $("#img_base64").val(ui.item.img);
             }
         }).data('ui-autocomplete')._renderItem = function(ul, item) {
             return $("<li class='ui-autocomplete-row'></li>")
