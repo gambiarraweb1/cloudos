@@ -221,7 +221,13 @@ class Os_model extends CI_Model
         $query = $this->db->get('clientes');
         if ($query->num_rows() > 0) {
             foreach ($query->result_array() as $row) {
-                $row_set[] = ['label' => $row['nomeCliente'] . ' | Telefone: ' . $row['telefone'] . ' | Celular: ' . $row['celular'], 'id' => $row['idClientes']];
+                //$row_set[] = ['label' => $row['nomeCliente'] . ' | Telefone: ' . $row['telefone'] . ' | Celular: ' . $row['celular'], 'id' => $row['idClientes']];
+
+                $temp_array = array();
+                $temp_array['id'] = $row['nomeCliente'];
+                $temp_array['value'] = $row['student_name'];
+                $temp_array['label'] = '<img src="images/' . $row['foto'] . '" width="70" />&nbsp;&nbsp;&nbsp;' . $row['nomeCliente'] . '';
+                $row_set[] = $temp_array;
             }
             echo json_encode($row_set);
         }
