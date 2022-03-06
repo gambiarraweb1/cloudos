@@ -50,18 +50,22 @@
                                 <form action="<?php echo current_url(); ?>" method="post" id="formOs">
                                     <div class="span12" style="padding: 1%">
                                         <div class="span6">
-                                            <div class="col-md-4" style="padding-left: 0px;  padding-right: 0px;">
-                                                <!-- <img src="images/food1.jpg" class="img-responsive"> -->
-                                                <img id="img_base64" width="25%" src="images/default-image.png" hidden="true" class="img-responsive">
-                                            </div>
                                             <label for="cliente">Cliente<span class="required">*</span></label>
                                             <input id="cliente" class="span12" type="text" name="cliente" value="" />
                                             <input id="clientes_id" class="span12" type="hidden" name="clientes_id" value="" />
+                                            <div class="col-md-4" style="padding-left: 0px;  padding-right: 0px;">
+                                                <!-- <img src="images/food1.jpg" class="img-responsive"> -->
+                                                <img id="img_base64" width="25%" src="" hidden="true" class="img-responsive">
+                                            </div>
                                         </div>
                                         <div class="span6">
                                             <label for="tecnico">Técnico / Responsável<span class="required">*</span></label>
                                             <input id="tecnico" class="span12" type="text" name="tecnico" value="<?= $this->session->userdata('nome'); ?>" />
                                             <input id="usuarios_id" class="span12" type="hidden" name="usuarios_id" value="<?= $this->session->userdata('id'); ?>" />
+                                            <div class="col-md-4" style="padding-left: 0px;  padding-right: 0px;">
+                                                <!-- <img src="images/food1.jpg" class="img-responsive"> -->
+                                                <img id="img_base64_tec" width="25%" src="" hidden="true" class="img-responsive">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="span12" style="padding: 1%; margin-left: 0">
@@ -158,8 +162,16 @@
             minLength: 1,
             select: function(event, ui) {
                 $("#usuarios_id").val(ui.item.id);
+                var img = ui.item.img;
+                $("#img_base64_tec").attr("src", "data:image/png;base64, " + img);
+                $("#img_base64_tec").attr("hidden", false);
             }
-        });
+        }).data('ui-autocomplete')._renderItem = function(ul, item) {
+            return $("<li class='ui-autocomplete-row'></li>")
+                .data("item.autocomplete", item)
+                .append(item.label)
+                .appendTo(ul);
+        };
         $("#termoGarantia").autocomplete({
             source: "<?php echo base_url(); ?>index.php/os/autoCompleteTermoGarantia",
             minLength: 1,
