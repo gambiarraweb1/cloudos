@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/trumbowyg/ui/trumbowyg.css">
 <script type="text/javascript" src="<?php echo base_url() ?>assets/trumbowyg/trumbowyg.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>assets/trumbowyg/langs/pt_br.js"></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" />
 <style>
     .ui-datepicker {
         z-index: 9999 !important;
@@ -14,6 +14,17 @@
     .trumbowyg-box {
         margin-top: 0;
         margin-bottom: 0;
+    }
+
+    .ui-autocomplete-row {
+        padding: 8px;
+        background-color: #f4f4f4;
+        border-bottom: 1px solid #ccc;
+        font-weight: bold;
+    }
+
+    .ui-autocomplete-row:hover {
+        background-color: #ddd;
     }
 </style>
 
@@ -106,9 +117,9 @@
                                     <div class="span12" style="padding: 1%; margin-left: 0">
                                         <div class="span6 offset3" style="display:flex">
                                             <button class="button btn btn-success" id="btnContinuar">
-                                              <span class="button__icon"><i class='bx bx-chevrons-right'></i></span><span class="button__text2">Continuar</span></button>
+                                                <span class="button__icon"><i class='bx bx-chevrons-right'></i></span><span class="button__text2">Continuar</span></button>
                                             <a href="<?php echo base_url() ?>index.php/os" class="button btn btn-mini btn-warning" style="max-width: 160px">
-                                              <span class="button__icon"><i class="bx bx-undo"></i></span><span class="button__text2">Voltar</span></a>
+                                                <span class="button__icon"><i class="bx bx-undo"></i></span><span class="button__text2">Voltar</span></a>
                                         </div>
                                     </div>
                                 </form>
@@ -129,7 +140,12 @@
             select: function(event, ui) {
                 $("#clientes_id").val(ui.item.id);
             }
-        });
+        }).data('ui-autocomplete')._renderItem = function(ul, item) {
+            return $("<li class='ui-autocomplete-row'></li>")
+                .data("item.autocomplete", item)
+                .append(item.label)
+                .appendTo(ul);
+        };
         $("#tecnico").autocomplete({
             source: "<?php echo base_url(); ?>index.php/os/autoCompleteUsuario",
             minLength: 1,
