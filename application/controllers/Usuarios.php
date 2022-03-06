@@ -145,7 +145,7 @@ class Usuarios extends MY_Controller
                     'dataExpiracao' => set_value('dataExpiracao'),
                     'situacao' => $this->input->post('situacao'),
                     'permissoes_id' => $this->input->post('permissoes_id'),
-                    'foto' => $foto,
+                    'url_image_user' => $foto,
                 ];
             } else {
                 $data = [
@@ -164,7 +164,7 @@ class Usuarios extends MY_Controller
                     'dataExpiracao' => set_value('dataExpiracao'),
                     'situacao' => $this->input->post('situacao'),
                     'permissoes_id' => $this->input->post('permissoes_id'),
-                    'foto' => $foto,
+                    'url_image_user' => $foto,
                 ];
             }
 
