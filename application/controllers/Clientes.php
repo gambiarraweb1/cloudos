@@ -106,8 +106,9 @@ class Clientes extends MY_Controller
             $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
         } else {
             $image = $_FILES['image']['tmp_name'];
-            $_POST['img'] = $_FILES;
-            debug();
+            $data = file_get_contents($image);
+            $foto = base64_encode($data);
+            //debug();
             $data = [
                 'nomeCliente' => $this->input->post('nomeCliente'),
                 'contato' => $this->input->post('contato'),
@@ -123,6 +124,7 @@ class Clientes extends MY_Controller
                 'estado' => $this->input->post('estado'),
                 'cep' => $this->input->post('cep'),
                 'fornecedor' => (set_value('fornecedor') == true ? 1 : 0),
+                'foto' => $foto,
             ];
 
             if ($this->clientes_model->edit('clientes', $data, 'idClientes', $this->input->post('idClientes')) == true) {
