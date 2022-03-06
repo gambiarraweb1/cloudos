@@ -120,6 +120,10 @@ class Usuarios extends MY_Controller
                 redirect(base_url() . 'index.php/usuarios/editar/' . $this->input->post('idUsuarios'));
             }
 
+            $image = $_FILES['image']['tmp_name'];
+            $data = file_get_contents($image);
+            $foto = base64_encode($data);
+
             $senha = $this->input->post('senha');
             if ($senha != null) {
                 $senha = password_hash($senha, PASSWORD_DEFAULT);
@@ -141,6 +145,7 @@ class Usuarios extends MY_Controller
                     'dataExpiracao' => set_value('dataExpiracao'),
                     'situacao' => $this->input->post('situacao'),
                     'permissoes_id' => $this->input->post('permissoes_id'),
+                    'foto' => $foto,
                 ];
             } else {
                 $data = [
@@ -159,6 +164,7 @@ class Usuarios extends MY_Controller
                     'dataExpiracao' => set_value('dataExpiracao'),
                     'situacao' => $this->input->post('situacao'),
                     'permissoes_id' => $this->input->post('permissoes_id'),
+                    'foto' => $foto,
                 ];
             }
 
