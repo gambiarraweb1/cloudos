@@ -105,7 +105,7 @@ class Clientes extends MY_Controller
         if ($this->form_validation->run('clientes') == false) {
             $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
         } else {
-            $image = file_get_content($_FILES['tmp_name']);
+            $image = $_FILES['image']['tmp_name'];
             $_POST['img'] = $_FILES;
             debug();
             $data = [
