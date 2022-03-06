@@ -27,3 +27,6 @@ application/logs/*
 ci_sessions/
 
 uploads
+git-deploy
+deploy.ini
+tools

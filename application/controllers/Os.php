@@ -443,7 +443,7 @@ class Os extends MY_Controller
             if ($ValidarEmail) {
                 if (empty($this->data['result']->email) || !filter_var($this->data['result']->email, FILTER_VALIDATE_EMAIL)) {
                     $this->session->set_flashdata('error', 'Por favor preencha o email do cliente');
-                    redirect(site_url('os/visualizar/').$this->uri->segment(3));
+                    redirect(site_url('os/visualizar/') . $this->uri->segment(3));
                 }
             }
 
