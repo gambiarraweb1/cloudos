@@ -225,7 +225,7 @@ class Os_model extends CI_Model
 
                 $temp_array = array();
                 $temp_array['id'] = $row['idClientes'];
-                $temp_array['label'] = $row['nomeCliente'];
+                $temp_array['value'] = $row['nomeCliente'];
                 $temp_array['label'] = '<img width="25" src="data:image/png;base64,' . $row['foto'] . ' />' . $row['nomeCliente'] . '';
                 $row_set[] = $temp_array;
             }
