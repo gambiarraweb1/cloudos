@@ -143,7 +143,7 @@
             minLength: 1,
             select: function(event, ui) {
                 $("#clientes_id").val(ui.item.id);
-                var img = ui.item.label;
+                var img = ui.item.img;
                 $("#img_base64").attr("src", img);
             }
         }).data('ui-autocomplete')._renderItem = function(ul, item) {
