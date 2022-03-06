@@ -52,7 +52,7 @@
                                         <div class="span6">
                                             <div class="col-md-4" style="padding-left: 0px;  padding-right: 0px;">
                                                 <!-- <img src="images/food1.jpg" class="img-responsive"> -->
-                                                <img id="img_base64" src="images/default-image.png" class="img-responsive">
+                                                <img id="img_base64" width="25%" src="images/default-image.png" class="img-responsive">
                                             </div>
                                             <label for="cliente">Cliente<span class="required">*</span></label>
                                             <input id="cliente" class="span12" type="text" name="cliente" value="" />
