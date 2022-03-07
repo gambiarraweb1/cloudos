@@ -110,7 +110,7 @@ class Caixas extends MY_Controller
 
         $this->data['result'] = $this->caixas_model->getById($this->uri->segment(3));
 
-        $this->data['view'] = 'caixas/editarServico';
+        $this->data['view'] = 'caixas/editarCaixa';
         return $this->layout();
     }
 
