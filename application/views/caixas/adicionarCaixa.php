@@ -5,27 +5,34 @@
                 <span class="icon">
                     <i class="fas fa-wrench"></i>
                 </span>
-                <h5>Cadastro de Serviço</h5>
+                <h5>Abertura de Caixa</h5>
             </div>
             <div class="widget-content nopadding tab-content">
                 <?php echo $custom_error; ?>
-                <form action="<?php echo current_url(); ?>" id="formServico" method="post" class="form-horizontal">
+                <form action="<?php echo current_url(); ?>" id="formCaixa" method="post" class="form-horizontal">
                     <div class="control-group">
-                        <label for="nome" class="control-label">Nome<span class="required">*</span></label>
+                        <label for="data" class="control-label">Data<span class="required">*</span></label>
                         <div class="controls">
-                            <input id="nome" type="text" name="nome" value="<?php echo set_value('nome'); ?>" />
+                            <input id="data" type="text" name="data" value="<?php echo date('d/m/Y'); ?>" readonly />
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="preco" class="control-label"><span class="required">Preço*</span></label>
+                        <label for="historico" class="control-label"><span class="required">Histórico*</span></label>
                         <div class="controls">
-                            <input id="preco" class="money" data-affixes-stay="true" data-thousands="" data-decimal="." type="text" name="preco" value="<?php echo set_value('preco'); ?>" />
+                            <input id="historico" class="money" data-affixes-stay="true" data-thousands="" data-decimal="." type="text" name="historico" value="<?php echo set_value('historico'); ?>" />
                         </div>
                     </div>
                     <div class="control-group">
                         <label for="descricao" class="control-label">Descrição</label>
                         <div class="controls">
                             <input id="descricao" type="text" name="descricao" value="<?php echo set_value('descricao'); ?>" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="operador" class="control-label">Operador</label>
+                        <div class="controls">
+                            <input id="operador" type="text" name="operador" value="<?php echo set_value('operador'); ?>" />
+                            <input id="operador_id" hidden="true" type="text" name="operador_id" value="<?php echo set_value('operador_id'); ?>" />
                         </div>
                     </div>
                     <div class="form-actions">
