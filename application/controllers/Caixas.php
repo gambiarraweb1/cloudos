@@ -55,9 +55,9 @@ class Caixas extends MY_Controller
         $this->load->library('form_validation');
         $this->data['custom_error'] = '';
 
-        $abre = $_POST['abre'];
-        $fecha = $_POST['fecha'];
-        $mov = $_POST['mov'];
+        $abre = $_GET['abre'];
+        $fecha = $_GET['fecha'];
+        $mov = $_GET['mov'];
         $data = date('d/m/Y');
         $tipo = null;
         $idCaixas = 0;
