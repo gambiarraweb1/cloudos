@@ -62,9 +62,11 @@ class Caixas extends MY_Controller
             $preco = str_replace(",", "", $preco);
 
             $data = [
-                'nome' => set_value('nome'),
+                'data' => set_value('data'),
+                'historico' => set_value('historico'),
                 'descricao' => set_value('descricao'),
-                'preco' => $preco,
+                'operador' => set_value('operador'),
+                //'preco' => $preco,
             ];
 
             if ($this->caixas_model->add('caixas', $data) == true) {
