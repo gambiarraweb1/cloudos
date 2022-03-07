@@ -62,7 +62,8 @@ class Caixas extends MY_Controller
             $preco = str_replace(",", "", $preco);
 
             $data = [
-                'data' => set_value('data'),
+                'data' => $this->input->post('data'),
+                //'data' => set_value('data'),
                 'historico' => set_value('historico'),
                 'descricao' => set_value('descricao'),
                 'operador' => set_value('operador'),
