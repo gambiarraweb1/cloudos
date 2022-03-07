@@ -19,7 +19,7 @@
                     <div class="control-group">
                         <label for="historico" class="control-label"><span class="required">Histórico*</span></label>
                         <div class="controls">
-                            <input id="historico" class="money" data-affixes-stay="true" data-thousands="" data-decimal="." type="text" name="historico" value="<?php echo set_value('historico'); ?>" />
+                            <input id="historico" type="text" name="historico" value="<?php echo set_value('historico'); ?>" />
                         </div>
                     </div>
                     <div class="control-group">
