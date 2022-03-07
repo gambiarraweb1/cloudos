@@ -54,6 +54,46 @@ class Caixas extends MY_Controller
 
         $this->load->library('form_validation');
         $this->data['custom_error'] = '';
+
+        $abre = $_POST['abre'];
+        $fecha = $_POST['fecha'];
+        $mov = $_POST['mov'];
+        $data = date('d/m/Y');
+        $tipo = null;
+        $idCaixas = 0;
+
+        // Abertura de Caixa
+        if ($abre == 1) {
+            $tipo = "Abertura de Terminal";
+            $caixa = $this->caixas_model->getByData($data, $tipo);
+            if ($caixa->idCaixas > 0) {
+                $this->session->set_flashdata('error', 'Já existe um caixa Aberto no dia de Hoje!');
+                redirect(base_url());
+            }
+        }
+        // Fechamento de Caixa
+        else if ($fecha == 1) {
+            $tipo = "Fechamento de Terminal";
+            $caixa = $this->caixas_model->getByData($data, $tipo);
+            if ($caixa->idCaixas > 0) {
+                $this->session->set_flashdata('error', 'Caixa já Fechado, favor abrir um novo.');
+                redirect(base_url());
+            }
+        }
+        // Movimentação de Caixa
+        else if ($mov == 1) {
+            $tipo = "Movimentação de Terminal";
+            $caixa = $this->caixas_model->getByData($data, $tipo);
+            if ($caixa->idCaixas > 0) {
+                $this->session->set_flashdata('error', 'Caixa já Fechado, favor abrir um novo.');
+                redirect(base_url());
+            }
+        } else {
+            $this->session->set_flashdata('error', 'Ocorreu um erro.');
+            $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
+            redirect(base_url());
+        }
+
         $_POST['caixa'] = $data;
         debug();
         if ($this->form_validation->run('caixas') == false) {
