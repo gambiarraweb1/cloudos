@@ -1,6 +1,6 @@
 <div class="new122">
     <?php if ($this->permission->checkPermission($this->session->userdata('permissao'), 'aServico')) { ?>
-        <a href="<?php echo base_url() ?>index.php/servicos/adicionar" class="button btn btn-mini btn-success" style="max-width: 160px">
+        <a href="<?php echo base_url() ?>index.php/caixas/adicionar" class="button btn btn-mini btn-success" style="max-width: 160px">
             <span class="button__icon"><i class='bx bx-plus-circle'></i></span><span class="button__text2">Abrir Caixa</span></a>
     <?php } ?>
 
@@ -40,7 +40,7 @@
                         echo '<td>' . $r->operador . '</td>';
                         echo '<td>';
                         if ($this->permission->checkPermission($this->session->userdata('permissao'), 'eServico')) {
-                            echo '<a style="margin-right: 1%" href="' . base_url() . 'index.php/servicos/editar/' . $r->idCaixas . '" class="btn-nwe3" title="Editar Serviço"><i class="bx bx-edit bx-xs"></i></a>';
+                            echo '<a style="margin-right: 1%" href="' . base_url() . 'index.php/caixas/editar/' . $r->idCaixas . '" class="btn-nwe3" title="Editar Serviço"><i class="bx bx-edit bx-xs"></i></a>';
                         }
                         if ($this->permission->checkPermission($this->session->userdata('permissao'), 'dServico')) {
                             echo '<a href="#modal-excluir" role="button" data-toggle="modal" servico="' . $r->idCaixas . '" class="btn-nwe4" title="Excluir Serviço"><i class="bx bx-trash-alt bx-xs"></i></a>  ';
