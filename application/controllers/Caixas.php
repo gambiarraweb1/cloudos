@@ -35,11 +35,11 @@ class Caixas extends MY_Controller
         $this->load->library('pagination');
 
         $this->data['configuration']['base_url'] = site_url('caixas/gerenciar/');
-        $this->data['configuration']['total_rows'] = $this->servicos_model->count('caixas');
+        $this->data['configuration']['total_rows'] = $this->caixas_model->count('caixas');
 
         $this->pagination->initialize($this->data['configuration']);
 
-        $this->data['results'] = $this->servicos_model->get('caixas', '*', '', $this->data['configuration']['per_page'], $this->uri->segment(3));
+        $this->data['results'] = $this->caixas_model->get('caixas', '*', '', $this->data['configuration']['per_page'], $this->uri->segment(3));
 
         $this->data['view'] = 'caixas/caixas';
         return $this->layout();
@@ -108,7 +108,7 @@ class Caixas extends MY_Controller
             }
         }
 
-        $this->data['result'] = $this->servicos_model->getById($this->uri->segment(3));
+        $this->data['result'] = $this->caixas_model->getById($this->uri->segment(3));
 
         $this->data['view'] = 'caixas/editarServico';
         return $this->layout();
@@ -127,8 +127,8 @@ class Caixas extends MY_Controller
             redirect(site_url('caixas/gerenciar/'));
         }
 
-        $this->servicos_model->delete('servicos_os', 'servicos_id', $id);
-        $this->servicos_model->delete('caixas', 'idServicos', $id);
+        $this->caixas_model->delete('servicos_os', 'servicos_id', $id);
+        $this->caixas_model->delete('caixas', 'idServicos', $id);
 
         log_info('Removeu um caixas. ID: ' . $id);
 
