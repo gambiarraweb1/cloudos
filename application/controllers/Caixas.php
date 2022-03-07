@@ -75,7 +75,7 @@ class Caixas extends MY_Controller
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
             }
         }
-        $this->data['view'] = 'caixas/adicionarServico';
+        $this->data['view'] = 'caixas/adicionarCaixa';
         return $this->layout();
     }
 
