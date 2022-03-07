@@ -37,7 +37,7 @@
                         echo '<td>' . $dataCaixa . '</td>';
                         echo '<td>' . $r->historico . '</td>';
                         echo '<td>' . $r->descricao . '</td>';
-                        echo '<td>' . $r->Operador . '</td>';
+                        echo '<td>' . $r->operador . '</td>';
                         echo '<td>';
                         if ($this->permission->checkPermission($this->session->userdata('permissao'), 'eServico')) {
                             echo '<a style="margin-right: 1%" href="' . base_url() . 'index.php/servicos/editar/' . $r->idCaixas . '" class="btn-nwe3" title="Editar Serviço"><i class="bx bx-edit bx-xs"></i></a>';
