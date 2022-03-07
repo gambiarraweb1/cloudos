@@ -27,7 +27,7 @@
                     <?php
                     if (!$results) {
                         echo '<tr>
-                                <td colspan="5">Nenhum Serviço Cadastrado</td>
+                                <td colspan="5">Nenhum Caixa Cadastrado</td>
                               </tr>';
                     }
                     foreach ($results as $r) {
@@ -40,10 +40,10 @@
                         echo '<td>' . $r->operador . '</td>';
                         echo '<td>';
                         if ($this->permission->checkPermission($this->session->userdata('permissao'), 'eServico')) {
-                            echo '<a style="margin-right: 1%" href="' . base_url() . 'index.php/caixas/editar/' . $r->idCaixas . '" class="btn-nwe3" title="Editar Serviço"><i class="bx bx-edit bx-xs"></i></a>';
+                            echo '<a style="margin-right: 1%" href="' . base_url() . 'index.php/caixas/editar/' . $r->idCaixas . '" class="btn-nwe3" title="Editar Caixa"><i class="bx bx-edit bx-xs"></i></a>';
                         }
                         if ($this->permission->checkPermission($this->session->userdata('permissao'), 'dServico')) {
-                            echo '<a href="#modal-excluir" role="button" data-toggle="modal" servico="' . $r->idCaixas . '" class="btn-nwe4" title="Excluir Serviço"><i class="bx bx-trash-alt bx-xs"></i></a>  ';
+                            echo '<a href="#modal-excluir" role="button" data-toggle="modal" caixa="' . $r->idCaixas . '" class="btn-nwe4" title="Excluir Caixa"><i class="bx bx-trash-alt bx-xs"></i></a>  ';
                         }
                         echo '</td>';
                         echo '</tr>';
@@ -57,14 +57,14 @@
 
 <!-- Modal -->
 <div id="modal-excluir" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <form action="<?php echo base_url() ?>index.php/servicos/excluir" method="post">
+    <form action="<?php echo base_url() ?>index.php/caixas/excluir" method="post">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h5 id="myModalLabel">Excluir Serviço</h5>
+            <h5 id="myModalLabel">Excluir Caixa</h5>
         </div>
         <div class="modal-body">
-            <input type="hidden" id="idServico" name="id" value="" />
-            <h5 style="text-align: center">Deseja realmente excluir este serviço?</h5>
+            <input type="hidden" id="idCaixa" name="id" value="" />
+            <h5 style="text-align: center">Deseja realmente excluir este caixa?</h5>
         </div>
         <div class="modal-footer" style="display:flex;justify-content: center">
             <button class="button btn btn-warning" data-dismiss="modal" aria-hidden="true"><span class="button__icon"><i class="bx bx-x"></i></span><span class="button__text2">Cancelar</span></button>
@@ -76,8 +76,8 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $(document).on('click', 'a', function(event) {
-            var servico = $(this).attr('servico');
-            $('#idServico').val(servico);
+            var caixa = $(this).attr('caixa');
+            $('#idCaixa').val(caixa);
         });
     });
 </script>

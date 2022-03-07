@@ -62,14 +62,14 @@ class Caixas extends MY_Controller
             $preco = str_replace(",", "", $preco);
 
             $data = [
-                'data' => $this->input->post('data'),
-                //'data' => set_value('data'),
+                'data' => set_value('data'),
                 'historico' => set_value('historico'),
                 'descricao' => set_value('descricao'),
                 'operador' => set_value('operador'),
                 //'preco' => $preco,
             ];
-
+            $_POST['caixa'] = $data;
+            debug();
             if ($this->caixas_model->add('caixas', $data) == true) {
                 $this->session->set_flashdata('success', 'Serviço adicionado com sucesso!');
                 log_info('Adicionou um serviço');
@@ -120,22 +120,21 @@ class Caixas extends MY_Controller
     public function excluir()
     {
         if (!$this->permission->checkPermission($this->session->userdata('permissao'), 'dServico')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para excluir caixas.');
+            $this->session->set_flashdata('error', 'Você não tem permissão para excluir Caixas.');
             redirect(base_url());
         }
 
         $id = $this->input->post('id');
         if ($id == null) {
-            $this->session->set_flashdata('error', 'Erro ao tentar excluir caixas.');
+            $this->session->set_flashdata('error', 'Erro ao tentar excluir Caixa.');
             redirect(site_url('caixas/gerenciar/'));
         }
 
-        $this->caixas_model->delete('servicos_os', 'servicos_id', $id);
-        $this->caixas_model->delete('caixas', 'idServicos', $id);
+        $this->caixas_model->delete('caixas', 'idCaixas', $id);
 
-        log_info('Removeu um caixas. ID: ' . $id);
+        log_info('Removeu um Caixa. ID: ' . $id);
 
-        $this->session->set_flashdata('success', 'Serviço excluido com sucesso!');
+        $this->session->set_flashdata('success', 'Caixa excluido com sucesso!');
         redirect(site_url('caixas/gerenciar/'));
     }
 }
