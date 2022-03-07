@@ -54,12 +54,12 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $(".money").maskMoney();
-        $('#formServico').validate({
+        $('#formCaixa').validate({
             rules: {
                 nome: {
                     required: true
                 },
-                preco: {
+                historico: {
                     required: true
                 }
             },
@@ -67,7 +67,7 @@
                 nome: {
                     required: 'Campo Requerido.'
                 },
-                preco: {
+                historico: {
                     required: 'Campo Requerido.'
                 }
             },
