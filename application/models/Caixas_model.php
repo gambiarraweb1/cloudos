@@ -38,10 +38,12 @@ class Caixas_model extends CI_Model
         return $this->db->get('caixas')->row();
     }
 
-    public function getByData($data, $tipo)
+    public function getByData($data, $tipo, $movimentacao = null)
     {
         $this->db->where('data', $data);
         $this->db->where('historico', $tipo);
+        if ($movimentacao !== null)
+            $this->db->where('historico', $movimentacao);
         $this->db->limit(1);
         return $this->db->get('caixas')->row();
     }

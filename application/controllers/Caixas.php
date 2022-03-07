@@ -69,6 +69,7 @@ class Caixas extends MY_Controller
             $tipo = "Abertura de Terminal";
             $caixa = $this->caixas_model->getByData($data, $tipo);
             if ($caixa->idCaixas > 0) {
+                $_POST['aberturaExisteNoDia'] = true;
                 $this->session->set_flashdata('error', 'Já existe um caixa Aberto no dia de Hoje!');
                 redirect(base_url());
             }
@@ -78,6 +79,7 @@ class Caixas extends MY_Controller
             $tipo = "Fechamento de Terminal";
             $caixa = $this->caixas_model->getByData($data, $tipo);
             if ($caixa->idCaixas > 0) {
+                $_POST['fechamentoExisteNoDia'] = true;
                 $this->session->set_flashdata('error', 'Caixa já Fechado, favor abrir um novo.');
                 redirect(base_url());
             }
@@ -85,9 +87,11 @@ class Caixas extends MY_Controller
         // Movimentação de Caixa
         else if ($mov == 1) {
             $tipo = "Movimentação de Terminal";
-            $caixa = $this->caixas_model->getByData($data, $tipo);
+            $movimentacao = set_value('historico');
+            $caixa = $this->caixas_model->getByData($data, $tipo, $movimentacao);
             if ($caixa->idCaixas > 0) {
-                $this->session->set_flashdata('error', 'Caixa já Fechado, favor abrir um novo.');
+                $_POST['movimentacaoExisteNoDia'] = true;
+                $this->session->set_flashdata('error', 'Movimentação já existe.');
                 redirect(base_url());
             }
         }
