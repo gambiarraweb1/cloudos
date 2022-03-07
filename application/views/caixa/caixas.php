@@ -1,7 +1,7 @@
 <div class="new122">
     <?php if ($this->permission->checkPermission($this->session->userdata('permissao'), 'aServico')) { ?>
         <a href="<?php echo base_url() ?>index.php/servicos/adicionar" class="button btn btn-mini btn-success" style="max-width: 160px">
-            <span class="button__icon"><i class='bx bx-plus-circle'></i></span><span class="button__text2">Add. Serviços</span></a>
+            <span class="button__icon"><i class='bx bx-plus-circle'></i></span><span class="button__text2">Abrir Caixa</span></a>
     <?php } ?>
 
     <div class="widget-box">
@@ -9,16 +9,17 @@
             <span class="icon">
                 <i class="fas fa-wrench"></i>
             </span>
-            <h5>Serviços</h5>
+            <h5>Caixas</h5>
         </div>
         <div class="widget-content nopadding tab-content">
             <table id="tabela" class="table table-bordered ">
                 <thead>
                     <tr>
                         <th>Cod.</th>
-                        <th>Nome</th>
-                        <th>Preço</th>
+                        <th>Data</th>
+                        <th>Histórico</th>
                         <th>Descrição</th>
+                        <th>Operador</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -30,17 +31,19 @@
                               </tr>';
                     }
                     foreach ($results as $r) {
+                        $dataCaixa = date(('d/m/Y'), strtotime($r->data));
                         echo '<tr>';
-                        echo '<td>' . $r->idServicos . '</td>';
-                        echo '<td>' . $r->nome . '</td>';
-                        echo '<td>' . number_format($r->preco, 2, ',', '.') . '</td>';
+                        echo '<td>' . $r->idCaixas . '</td>';
+                        echo '<td>' . $dataCaixa . '</td>';
+                        echo '<td>' . $r->historico . '</td>';
                         echo '<td>' . $r->descricao . '</td>';
+                        echo '<td>' . $r->Operador . '</td>';
                         echo '<td>';
                         if ($this->permission->checkPermission($this->session->userdata('permissao'), 'eServico')) {
-                            echo '<a style="margin-right: 1%" href="' . base_url() . 'index.php/servicos/editar/' . $r->idServicos . '" class="btn-nwe3" title="Editar Serviço"><i class="bx bx-edit bx-xs"></i></a>';
+                            echo '<a style="margin-right: 1%" href="' . base_url() . 'index.php/servicos/editar/' . $r->idCaixas . '" class="btn-nwe3" title="Editar Serviço"><i class="bx bx-edit bx-xs"></i></a>';
                         }
                         if ($this->permission->checkPermission($this->session->userdata('permissao'), 'dServico')) {
-                            echo '<a href="#modal-excluir" role="button" data-toggle="modal" servico="' . $r->idServicos . '" class="btn-nwe4" title="Excluir Serviço"><i class="bx bx-trash-alt bx-xs"></i></a>  ';
+                            echo '<a href="#modal-excluir" role="button" data-toggle="modal" servico="' . $r->idCaixas . '" class="btn-nwe4" title="Excluir Serviço"><i class="bx bx-trash-alt bx-xs"></i></a>  ';
                         }
                         echo '</td>';
                         echo '</tr>';

@@ -28,34 +28,34 @@ class Caixas extends MY_Controller
     public function gerenciar()
     {
         if (!$this->permission->checkPermission($this->session->userdata('permissao'), 'vServico')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para visualizar serviços.');
+            $this->session->set_flashdata('error', 'Você não tem permissão para visualizar caixas.');
             redirect(base_url());
         }
 
         $this->load->library('pagination');
 
-        $this->data['configuration']['base_url'] = site_url('servicos/gerenciar/');
-        $this->data['configuration']['total_rows'] = $this->servicos_model->count('servicos');
+        $this->data['configuration']['base_url'] = site_url('caixas/gerenciar/');
+        $this->data['configuration']['total_rows'] = $this->servicos_model->count('caixas');
 
         $this->pagination->initialize($this->data['configuration']);
 
-        $this->data['results'] = $this->servicos_model->get('servicos', '*', '', $this->data['configuration']['per_page'], $this->uri->segment(3));
+        $this->data['results'] = $this->servicos_model->get('caixas', '*', '', $this->data['configuration']['per_page'], $this->uri->segment(3));
 
-        $this->data['view'] = 'servicos/servicos';
+        $this->data['view'] = 'caixas/caixas';
         return $this->layout();
     }
 
     public function adicionar()
     {
         if (!$this->permission->checkPermission($this->session->userdata('permissao'), 'aServico')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para adicionar serviços.');
+            $this->session->set_flashdata('error', 'Você não tem permissão para adicionar caixas.');
             redirect(base_url());
         }
 
         $this->load->library('form_validation');
         $this->data['custom_error'] = '';
 
-        if ($this->form_validation->run('servicos') == false) {
+        if ($this->form_validation->run('caixas') == false) {
             $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
         } else {
             $preco = $this->input->post('preco');
@@ -67,28 +67,28 @@ class Caixas extends MY_Controller
                 'preco' => $preco,
             ];
 
-            if ($this->servicos_model->add('servicos', $data) == true) {
+            if ($this->caixas_model->add('caixas', $data) == true) {
                 $this->session->set_flashdata('success', 'Serviço adicionado com sucesso!');
                 log_info('Adicionou um serviço');
-                redirect(site_url('servicos/adicionar/'));
+                redirect(site_url('caixas/adicionar/'));
             } else {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
             }
         }
-        $this->data['view'] = 'servicos/adicionarServico';
+        $this->data['view'] = 'caixas/adicionarServico';
         return $this->layout();
     }
 
     public function editar()
     {
         if (!$this->permission->checkPermission($this->session->userdata('permissao'), 'eServico')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para editar serviços.');
+            $this->session->set_flashdata('error', 'Você não tem permissão para editar caixas.');
             redirect(base_url());
         }
         $this->load->library('form_validation');
         $this->data['custom_error'] = '';
 
-        if ($this->form_validation->run('servicos') == false) {
+        if ($this->form_validation->run('caixas') == false) {
             $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
         } else {
             $preco = $this->input->post('preco');
@@ -99,10 +99,10 @@ class Caixas extends MY_Controller
                 'preco' => $preco,
             ];
 
-            if ($this->servicos_model->edit('servicos', $data, 'idServicos', $this->input->post('idServicos')) == true) {
+            if ($this->caixas_model->edit('caixas', $data, 'idServicos', $this->input->post('idServicos')) == true) {
                 $this->session->set_flashdata('success', 'Serviço editado com sucesso!');
                 log_info('Alterou um serviço. ID: ' . $this->input->post('idServicos'));
-                redirect(site_url('servicos/editar/') . $this->input->post('idServicos'));
+                redirect(site_url('caixas/editar/') . $this->input->post('idServicos'));
             } else {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um errro.</p></div>';
             }
@@ -110,29 +110,29 @@ class Caixas extends MY_Controller
 
         $this->data['result'] = $this->servicos_model->getById($this->uri->segment(3));
 
-        $this->data['view'] = 'servicos/editarServico';
+        $this->data['view'] = 'caixas/editarServico';
         return $this->layout();
     }
 
     public function excluir()
     {
         if (!$this->permission->checkPermission($this->session->userdata('permissao'), 'dServico')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para excluir serviços.');
+            $this->session->set_flashdata('error', 'Você não tem permissão para excluir caixas.');
             redirect(base_url());
         }
 
         $id = $this->input->post('id');
         if ($id == null) {
-            $this->session->set_flashdata('error', 'Erro ao tentar excluir serviço.');
-            redirect(site_url('servicos/gerenciar/'));
+            $this->session->set_flashdata('error', 'Erro ao tentar excluir caixas.');
+            redirect(site_url('caixas/gerenciar/'));
         }
 
         $this->servicos_model->delete('servicos_os', 'servicos_id', $id);
-        $this->servicos_model->delete('servicos', 'idServicos', $id);
+        $this->servicos_model->delete('caixas', 'idServicos', $id);
 
-        log_info('Removeu um serviço. ID: ' . $id);
+        log_info('Removeu um caixas. ID: ' . $id);
 
         $this->session->set_flashdata('success', 'Serviço excluido com sucesso!');
-        redirect(site_url('servicos/gerenciar/'));
+        redirect(site_url('caixas/gerenciar/'));
     }
 }
