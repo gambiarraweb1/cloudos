@@ -56,6 +56,23 @@ $config = [
             'rules' => 'trim',
         ]
     ],
+    'caixas' => [
+        [
+            'field' => 'historico',
+            'label' => 'Historico',
+            'rules' => 'required|trim',
+        ],
+        [
+            'field' => 'descricao',
+            'label' => '',
+            'rules' => 'trim',
+        ],
+        [
+            'field' => 'operador',
+            'label' => '',
+            'rules' => 'trim',
+        ]
+    ],
     'servicos' => [
         [
             'field' => 'nome',
