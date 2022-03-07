@@ -101,7 +101,7 @@ class Caixas extends MY_Controller
         //     redirect(base_url());
         // }
 
-        debug();
+        //debug();
         if ($this->form_validation->run('caixas') == false) {
             $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
         } else {
@@ -118,7 +118,7 @@ class Caixas extends MY_Controller
 
             if ($this->caixas_model->add('caixas', $data) == true) {
                 $this->session->set_flashdata('success', 'Serviço adicionado com sucesso!');
-                log_info('Adicionou um serviço');
+                log_info('Adicionou um caixa');
                 redirect(site_url('caixas/adicionar/'));
             } else {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
