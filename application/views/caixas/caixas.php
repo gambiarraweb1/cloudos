@@ -1,7 +1,15 @@
 <div class="new122">
     <?php if ($this->permission->checkPermission($this->session->userdata('permissao'), 'aServico')) { ?>
-        <a href="<?php echo base_url() ?>index.php/caixas/adicionar" class="button btn btn-mini btn-success" style="max-width: 160px">
+        <a href="<?php echo base_url() ?>index.php/caixas/adicionar?abre=1" class="button btn btn-mini btn-success" style="max-width: 160px">
             <span class="button__icon"><i class='bx bx-plus-circle'></i></span><span class="button__text2">Abrir Caixa</span></a>
+    <?php } ?>
+    <?php if ($this->permission->checkPermission($this->session->userdata('permissao'), 'aServico')) { ?>
+        <a href="<?php echo base_url() ?>index.php/caixas/adicionar?fecha=1" class="button btn btn-mini btn-success" style="max-width: 160px">
+            <span class="button__icon"><i class='bx bx-plus-circle'></i></span><span class="button__text2">Fechar Caixa</span></a>
+    <?php } ?>
+    <?php if ($this->permission->checkPermission($this->session->userdata('permissao'), 'aServico')) { ?>
+        <a href="<?php echo base_url() ?>index.php/caixas/adicionar?mov=1" class="button btn btn-mini btn-success" style="max-width: 160px">
+            <span class="button__icon"><i class='bx bx-plus-circle'></i></span><span class="button__text2">Add. Movimentação</span></a>
     <?php } ?>
 
     <div class="widget-box">

@@ -54,7 +54,8 @@ class Caixas extends MY_Controller
 
         $this->load->library('form_validation');
         $this->data['custom_error'] = '';
-
+        $_POST['caixa'] = $data;
+        debug();
         if ($this->form_validation->run('caixas') == false) {
             $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
         } else {
@@ -68,8 +69,7 @@ class Caixas extends MY_Controller
                 'operador' => set_value('operador'),
                 //'preco' => $preco,
             ];
-            $_POST['caixa'] = $data;
-            debug();
+
             if ($this->caixas_model->add('caixas', $data) == true) {
                 $this->session->set_flashdata('success', 'Serviço adicionado com sucesso!');
                 log_info('Adicionou um serviço');
