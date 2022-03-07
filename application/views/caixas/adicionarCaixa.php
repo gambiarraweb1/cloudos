@@ -32,7 +32,6 @@
                         <label for="operador" class="control-label">Operador</label>
                         <div class="controls">
                             <input id="operador" type="text" name="operador" value="<?php echo set_value('operador'); ?>" />
-                            <input id="operador_id" hidden="true" type="text" name="operador_id" value="<?php echo set_value('operador_id'); ?>" />
                         </div>
                     </div>
                     <div class="form-actions">
